@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bank Assistant Chatbot</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Background Slideshow */
+    .slideshow-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .slideshow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: fade 20s infinite;
+    }
+
+    .slideshow:nth-child(1) {
+      background-image: url('https://img.freepik.com/free-photo/banking-web-laptop-office_53876-124775.jpg?t=st=1745923077~exp=1745926677~hmac=108c02d5d77740d3e22902969718e484877156b6eb0dc9b5599e4df350c22065&w=1380');
+      animation-delay: 0s;
+    }
+
+    .slideshow:nth-child(2) {
+      background-image: url('https://img.freepik.com/free-photo/house-investments-elements-assortment_23-2148793805.jpg?t=st=1745923147~exp=1745926747~hmac=50bc8d685d85affd28d29b36aac823be7a96699825fdad324da3cdb603d2aa7a&w=1380');
+      animation-delay: 5s;
+    }
+
+    .slideshow:nth-child(3) {
+      background-image: url('https://img.freepik.com/free-photo/people-waiting-get-money-from-automated-teller-machine-people-withdrawn-money-from-atm-concept_1150-13566.jpg?t=st=1745923203~exp=1745926803~hmac=68f56c2f8be2017ad8da3285bd6f7642e4cfd0b035104a6d96140d76e11cf669&w=1380');
+      animation-delay: 10s;
+    }
+
+    .slideshow:nth-child(4) {
+      background-image: url('https://img.freepik.com/free-photo/hand-putting-coin-piggy-bank-growth-chart_23-2148780587.jpg?t=st=1745923268~exp=1745926868~hmac=96491bad267340f8768e08af742aeff8fe8261368a2f2ba86d9e692ad010bd4d&w=1380');
+      animation-delay: 15s;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      25% { opacity: 1; }
+      30% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 400px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .chat-header {
+      background: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      max-width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+
+    .user {
+      align-self: flex-end;
+      background: #daf1fc;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background: #e4e4e4;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .chat-input button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slideshow-container">
+    <div class="slideshow"></div>
+    <div class="slideshow"></div>
+    <div class="slideshow"></div>
+    <div class="slideshow"></div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-header">Bank Assistant Bot</div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">Hello! How can I assist you with your banking needs today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chat = document.getElementById("chatMessages");
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerText = message;
+      chat.appendChild(userMsg);
+
+      // Simple Bot Reply
+      const botMsg = document.createElement("div");
+      botMsg.className = "message bot";
+
+      if (message.toLowerCase().includes("account")) {
+        botMsg.innerText = "We offer Savings, Current, and Fixed Deposit accounts.";
+      } else if (message.toLowerCase().includes("loan")) {
+        botMsg.innerText = "We provide Home Loans, Personal Loans, and Vehicle Loans.";
+      } else if (message.toLowerCase().includes("thank")) {
+        botMsg.innerText = "You're welcome!";
+      } else {
+        botMsg.innerText = "I'm sorry, could you rephrase that?";
+      }
+
+      setTimeout(() => {
+        chat.appendChild(botMsg);
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>

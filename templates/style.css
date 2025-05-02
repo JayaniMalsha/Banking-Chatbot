@@ -1,0 +1,98 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .slideshow-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, #00bcd4, #8e24aa, #ff5722, #4caf50);
+    background-size: 800% 800%;
+    animation: slide 20s ease infinite;
+    z-index: -1;
+  }
+  
+  @keyframes slideshow {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .chat-container {
+    position: relative;
+    width: 400px;
+    max-width: 90%;
+    margin: 40px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  
+  .chat-header {
+    background: #2196f3;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .chat-box {
+    height: 300px;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f4f6f8;
+  }
+  
+  .chat-box .bot,
+  .chat-box .user {
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 80%;
+    line-height: 1.4em;
+  }
+  
+  .bot {
+    background: #e0f7fa;
+    align-self: flex-start;
+  }
+  
+  .user {
+    background: #c8e6c9;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .chat-input button {
+    padding: 10px 15px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .chat-input button:hover {
+    background: #1976d2;
+  }
+  
